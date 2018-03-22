@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <style>
+        #nav li {
+            color: white;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            float: left;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            margin-top: 15px;
+            
+        }
+
+        select {
+            margin: 5%;
+        }
+
+        #books ul {
+            direction: ltr;
+            display: inline;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul id="nav">
+        <li> Home</li>
+        <li>My Books</li>
+        <li>Browse</li>
+
+        <select name="sort" id="sort">
+            <option value=""></option>
+            <option value="byTitle">Sort By Tilte</option>
+            <option value="byID">Sort By ID </option>
+        </select>
+    </ul>
+    <div id="books">
+        <ul>
+            <li>
+                <img src="https://images.gr-assets.com/books/1328834793s/2998152.jpg" alt="a"> JavaScript: The Good Parts
+                <br> by Douglas Crockford
+            </li>
+            <br>
+            <li>
+                <img src="https://images.gr-assets.com/books/1344668503s/9422683.jpg" alt=""> JavaScript Patterns
+                <br> by Stoyan Stefanov
+            </li>
+            <br>
+            <li>
+                <img src="https://images.gr-assets.com/books/1347652925s/148050.jpg" alt=""> JavaScript: The Definitive Guide
+                <br> David Flanagan
+            </li>
+            <br>
+            <li>
+                <img src="https://images.gr-assets.com/books/1308260856s/8910666.jpg" alt=""> Eloquent JavaScript: A Modern Introduction to Programming
+                <br> Marijn Haverbeke
+            </li>
+            <br>
+            <li>
+                <img src="https://images.gr-assets.com/books/1337560878s/13591032.jpg" alt=""> Maintainable JavaScript
+                <br> Nicholas C. Zakas
+            </li>
+        </ul>
+    </div>
+
+    <script>
+    var a = [ {}]
+    </script>
+</body>
+
+</html>
