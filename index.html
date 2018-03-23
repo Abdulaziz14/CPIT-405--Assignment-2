@@ -49,7 +49,7 @@
         </select>
     </ul>
     <div id="books">
-        <ul>
+        <ul id="listOfBooks">
             <li>
                 <img src="https://images.gr-assets.com/books/1328834793s/2998152.jpg" alt="a" height="70px" width="50">
                 <p class="title">Title: JavaScript: The Good Parts</p>
@@ -80,15 +80,62 @@
 
             <li>
                 <img src="https://images.gr-assets.com/books/1337560878s/13591032.jpg" alt="" height="70px" width="50">
-                <p class="title">Maintainable JavaScript</p> 
-                <p class="author">Nicholas C. Zakas</p> 
+                <p class="title">Maintainable JavaScript</p>
+                <p class="author">Nicholas C. Zakas</p>
             </li>
         </ul>
     </div>
 
     <script>
-        var a = [{}]
+        var lists = document.getElementById("listOfBooks");
+        var li = document.createElement("li");
+        lists.appendChild(li);
+        var img = document.createElement("img");
+        img.src = "https://images.gr-assets.com/books/1328834793s/2998152.jpg"
+        img.height = "70"
+        img.width = "50"
+        li.appendChild(img);
+        var title = document.createElement("p");
+        title.className = "title";
+        var text = document.createTextNode("JavaScript: The Good Parts");
+        title.appendChild(text);
+        li.appendChild(title)
+
+        var author = document.createElement("p");
+        author.className = "author";
+        var writer = document.createTextNode("Douglas Crockford");
+        author.appendChild(writer);
+        li.appendChild(author);
+
+       function makeAnLI(bookImage, bookName, bookAuthor) {
+            var lists = document.getElementById("listOfBooks");
+            var li = document.createElement("li");
+            lists.appendChild(li);
+            var img = document.createElement("img");
+            img.src = bookImage
+            img.height = 70;
+            img.width = 50;
+            li.appendChild(img);
+            var title = document.createElement("p");
+            title.className = "title";
+            var text = document.createTextNode(bookName);
+            title.appendChild(text);
+            li.appendChild(title)
+
+            var author = document.createElement("p");
+            author.className = "author";
+            var writer = document.createTextNode(bookAuthor);
+            author.appendChild(writer);
+            li.appendChild(author);
+        }
+        makeAnLi("https://images.gr-assets.com/books/1328834793s/2998152.jpg", "JavaScript: The Good Parts", "Douglas Crockford");
+        makeAnLi("https://images.gr-assets.com/books/1328834793s/2998152.jpg", "JavaScript: The Good Parts", "Douglas Crockford");
+        makeAnLi("https://images.gr-assets.com/books/1328834793s/2998152.jpg", "JavaScript: The Good Parts", "Douglas Crockford");
+        makeAnLi("https://images.gr-assets.com/books/1328834793s/2998152.jpg", "JavaScript: The Good Parts", "Douglas Crockford");
+        
     </script>
+
+    
 </body>
 
 </html>
