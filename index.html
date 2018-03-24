@@ -45,45 +45,47 @@
         <select name="sort" id="sort">
             <option value=""></option>
             <option value="byTitle">Sort By Tilte</option>
-            <option value="byID">Sort By ID </option>
+            <option value="byAuthor">Sort By Author Name </option>
+            <option value="byRate">Sort By Rate </option>
+            <option value="byDate">Sort By Date </option>
         </select>
     </ul>
     <div id="books">
         <ul id="listOfBooks">
-            
-          
+
+
         </ul>
     </div>
 
     <script>
         var books = [{
                 title: 'JavaScript: The Good Parts',
-                date_published: '2008',
+                date_published: 2008,
                 author: 'Douglas Crockford ',
                 rate: 4.23,
-                img: '"https://images.gr-assets.com/books/1328834793s/2998152.jpg'
+                img: 'https://images.gr-assets.com/books/1328834793s/2998152.jpg'
             }, {
                 title: 'JavaScript Patterns',
-                date_published: '2010',
+                date_published: 2010,
                 author: 'Stoyan Stefanov',
                 rate: 4.17,
                 img: 'https://images.gr-assets.com/books/1344668503s/9422683.jpg'
             }, {
                 title: 'Eloquent JavaScript: A Modern Introduction to Programming',
-                date_published: '2008',
+                date_published: 2008,
                 author: 'Marijn Haverbeke',
                 rate: 4.13,
                 img: 'https://images.gr-assets.com/books/1308260856s/8910666.jpg'
             },
             {
                 title: 'Maintainable JavaScript',
-                date_published: '2012',
+                date_published: 2012,
                 author: 'Nicholas C. Zakas',
                 rate: 3.86,
                 img: 'https://images.gr-assets.com/books/1337560878s/13591032.jpg'
             }
 
-            // add more book items here
+
         ]
 
 
@@ -98,58 +100,105 @@
             liElem.appendChild(img);
 
             var BTitle = document.createElement("p")
-            var Ttext = createTextNode(bookObj.title)
+            var Ttext = document.createTextNode(bookObj.title)
             BTitle.appendChild(Ttext)
             liElem.appendChild(BTitle)
 
             var author = document.createElement("p")
-            var atext = createTextNode(bookObj.author)
-            author.appendChild(Ttext)
+            var atext = document.createTextNode(bookObj.author)
+            author.appendChild(atext)
             liElem.appendChild(author)
 
             var date = document.createElement("p")
-            var dtext = createTextNode(bookObj.date_published)
+            var dtext = document.createTextNode(bookObj.date_published)
             date.appendChild(dtext)
             liElem.appendChild(date);
 
             var rev = document.createElement("p")
-            var rtext = createTextNode(bookObj.rate)
+            var rtext = document.createTextNode(bookObj.rate)
             rev.appendChild(rtext)
             liElem.appendChild(rev)
-                      
+
 
             return liElem
         }
-        /*
-                function sortByReviews() {
-                    books.sort(function (a, b) {
-                        // implment your compare function here
-                    })
-                }
 
-                function upDateDOM() {
-                    var ulBooks = document.getElementById('books-list')
-                    ulBooks.innerHTML = ''
-                    for (item of books) {
-                        ulBooks.appendChild(createBookItem(item))
-                    }
-                }
 
-                // Sort by, select event
-                var select = document.getElementById("sort-books")
-                select.onchange = function () {
-                    if (select.value === 'reviews') {
-                        sortByReviews()
-                        upDateDOM()
-                    } else if (select.value === 'priceLow') {
-                        sortByPriceLow()
-                        upDateDOM()
-                    } else if (select.value === 'rating') {
-                        sortByRating()
-                        upDateDOM()
-                    }
+        function sortByTitle() {
+            books.sort(function (a, b) {
+                var x = a.title.toLowerCase();
+                var y = b.title.toLowerCase();
+                if (x > y) {
+                    return 1;
                 }
-                */
+                if (x < y) {
+                    return -1;
+                }
+                return 0;
+
+            })
+
+        }
+
+        function sortByRate() {
+            books.sort(function (a, b) {
+
+                return b.rate - a.rate;
+            })
+
+        }
+
+        function sortByAuthor() {
+            books.sort(function (a, b) {
+                var x = a.author.toLowerCase();
+                var y = b.author.toLowerCase();
+                if (x > y) {
+                    return 1;
+                }
+                if (x < y) {
+                    return -1;
+                }
+                return 0;
+
+            })
+
+        }
+
+        function sortByDate() {
+            books.sort(function (a, b) {
+                return b.date_published - a.date_published;
+            })
+
+        }
+
+
+
+        function upDateDOM() {
+            var ulBooks = document.getElementById('listOfBooks')
+            ulBooks.innerHTML = ''
+            for (item of books) {
+                ulBooks.appendChild(createBookItem(item))
+            }
+        }
+
+        // Sort by, select event
+        var select = document.getElementById("sort")
+        select.onchange = function () {
+            if (select.value === 'byTitle') {
+                sortByTitle();
+                upDateDOM();
+            } else if (select.value === 'byAuthor') {
+                sortByAuthor();
+                upDateDOM()
+            } else if (select.value === 'byRate') {
+                sortByRate()
+                upDateDOM()
+            } else if (select.value === 'byDate') {
+                sortByDate()
+                upDateDOM()
+            }
+        }
+        upDateDOM();
     </script>
 
 
