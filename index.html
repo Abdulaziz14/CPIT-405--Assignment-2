@@ -50,92 +50,109 @@
     </ul>
     <div id="books">
         <ul id="listOfBooks">
-            <li>
-                <img src="https://images.gr-assets.com/books/1328834793s/2998152.jpg" alt="a" height="70px" width="50">
-                <p class="title">Title: JavaScript: The Good Parts</p>
-                <p class="author">Author: Douglas Crockford</p>
-
-            </li>
-            <br>
-            <li>
-                <img src="https://images.gr-assets.com/books/1344668503s/9422683.jpg" alt="" height="70px" width="50">
-                <p class="title"> JavaScript Patterns </p>
-                <p class="author">Stoyan Stefanov</p>
-
-            </li>
-
-            <li>
-                <img src="https://images.gr-assets.com/books/1347652925s/148050.jpg" alt="" height="70px" width="50">
-                <p class="title">JavaScript: The Definitive Guide</p>
-                <p class="author">David Flanagan</p>
-
-            </li>
-
-            <li>
-                <img src="https://images.gr-assets.com/books/1308260856s/8910666.jpg" alt="" height="70px" width="50">
-                <p class="title">Eloquent JavaScript: A Modern Introduction to Programming </p>
-                <p class="author">Marijn Haverbeke</p>
-
-            </li>
-
-            <li>
-                <img src="https://images.gr-assets.com/books/1337560878s/13591032.jpg" alt="" height="70px" width="50">
-                <p class="title">Maintainable JavaScript</p>
-                <p class="author">Nicholas C. Zakas</p>
-            </li>
+            
+          
         </ul>
     </div>
 
     <script>
-        var lists = document.getElementById("listOfBooks");
-        var li = document.createElement("li");
-        lists.appendChild(li);
-        var img = document.createElement("img");
-        img.src = "https://images.gr-assets.com/books/1328834793s/2998152.jpg"
-        img.height = "70"
-        img.width = "50"
-        li.appendChild(img);
-        var title = document.createElement("p");
-        title.className = "title";
-        var text = document.createTextNode("JavaScript: The Good Parts");
-        title.appendChild(text);
-        li.appendChild(title)
+        var books = [{
+                title: 'JavaScript: The Good Parts',
+                date_published: '2008',
+                author: 'Douglas Crockford ',
+                rate: 4.23,
+                img: '"https://images.gr-assets.com/books/1328834793s/2998152.jpg'
+            }, {
+                title: 'JavaScript Patterns',
+                date_published: '2010',
+                author: 'Stoyan Stefanov',
+                rate: 4.17,
+                img: 'https://images.gr-assets.com/books/1344668503s/9422683.jpg'
+            }, {
+                title: 'Eloquent JavaScript: A Modern Introduction to Programming',
+                date_published: '2008',
+                author: 'Marijn Haverbeke',
+                rate: 4.13,
+                img: 'https://images.gr-assets.com/books/1308260856s/8910666.jpg'
+            },
+            {
+                title: 'Maintainable JavaScript',
+                date_published: '2012',
+                author: 'Nicholas C. Zakas',
+                rate: 3.86,
+                img: 'https://images.gr-assets.com/books/1337560878s/13591032.jpg'
+            }
 
-        var author = document.createElement("p");
-        author.className = "author";
-        var writer = document.createTextNode("Douglas Crockford");
-        author.appendChild(writer);
-        li.appendChild(author);
+            // add more book items here
+        ]
 
-       function makeAnLI(bookImage, bookName, bookAuthor) {
+
+
+        function createBookItem(bookObj) {
             var lists = document.getElementById("listOfBooks");
-            var li = document.createElement("li");
-            lists.appendChild(li);
-            var img = document.createElement("img");
-            img.src = bookImage
-            img.height = 70;
-            img.width = 50;
-            li.appendChild(img);
-            var title = document.createElement("p");
-            title.className = "title";
-            var text = document.createTextNode(bookName);
-            title.appendChild(text);
-            li.appendChild(title)
+            var liElem = document.createElement('li')
 
-            var author = document.createElement("p");
-            author.className = "author";
-            var writer = document.createTextNode(bookAuthor);
-            author.appendChild(writer);
-            li.appendChild(author);
+
+            var img = document.createElement('img')
+            img.src = bookObj.img;
+            liElem.appendChild(img);
+
+            var BTitle = document.createElement("p")
+            var Ttext = createTextNode(bookObj.title)
+            BTitle.appendChild(Ttext)
+            liElem.appendChild(BTitle)
+
+            var author = document.createElement("p")
+            var atext = createTextNode(bookObj.author)
+            author.appendChild(Ttext)
+            liElem.appendChild(author)
+
+            var date = document.createElement("p")
+            var dtext = createTextNode(bookObj.date_published)
+            date.appendChild(dtext)
+            liElem.appendChild(date);
+
+            var rev = document.createElement("p")
+            var rtext = createTextNode(bookObj.rate)
+            rev.appendChild(rtext)
+            liElem.appendChild(rev)
+                      
+
+            return liElem
         }
-        makeAnLi("https://images.gr-assets.com/books/1328834793s/2998152.jpg", "JavaScript: The Good Parts", "Douglas Crockford");
-        makeAnLi("https://images.gr-assets.com/books/1328834793s/2998152.jpg", "JavaScript: The Good Parts", "Douglas Crockford");
-        makeAnLi("https://images.gr-assets.com/books/1328834793s/2998152.jpg", "JavaScript: The Good Parts", "Douglas Crockford");
-        makeAnLi("https://images.gr-assets.com/books/1328834793s/2998152.jpg", "JavaScript: The Good Parts", "Douglas Crockford");
-        
+        /*
+                function sortByReviews() {
+                    books.sort(function (a, b) {
+                        // implment your compare function here
+                    })
+                }
+
+                function upDateDOM() {
+                    var ulBooks = document.getElementById('books-list')
+                    ulBooks.innerHTML = ''
+                    for (item of books) {
+                        ulBooks.appendChild(createBookItem(item))
+                    }
+                }
+
+                // Sort by, select event
+                var select = document.getElementById("sort-books")
+                select.onchange = function () {
+                    if (select.value === 'reviews') {
+                        sortByReviews()
+                        upDateDOM()
+                    } else if (select.value === 'priceLow') {
+                        sortByPriceLow()
+                        upDateDOM()
+                    } else if (select.value === 'rating') {
+                        sortByRating()
+                        upDateDOM()
+                    }
+                }
+                */
     </script>
 
-    
+
 </body>
 
 </html>
